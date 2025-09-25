@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Points Prediction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Points Prediction Model</h1>
+    <p class="subtitle">Enter the song features below to get a predicted score.</p>
+
+    <!-- Prediction Form -->
+    <form action="{{ url_for('predict') }}" method="post">
+      <label for="acousticness">Acousticness:</label>
+      <input type="number" name="acousticness" step="any" required placeholder="e.g. 0.45">
+
+      <label for="loudness">Loudness:</label>
+      <input type="number" name="loudness" step="any" required placeholder="e.g. -5.2">
+
+      <label for="tempo">Tempo:</label>
+      <input type="number" name="tempo" step="any" required placeholder="e.g. 120.0">
+
+      <label for="speechiness">Speechiness:</label>
+      <input type="number" name="speechiness" step="any" required placeholder="e.g. 0.08">
+
+      <label for="valence">Valence:</label>
+      <input type="number" name="valence" step="any" required placeholder="e.g. 0.65">
+
+      <button type="submit" class="btn">Predict Points</button>
+    </form>
+
+    <!-- Display Prediction Result -->
+    {% if prediction_text %}
+      <div class="result">
+        <h2>{{ prediction_text }}</h2>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
